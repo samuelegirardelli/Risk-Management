@@ -718,11 +718,11 @@ end
 for j = 1:width(index)
     VaRData = [-Normal95(:,j),-Historical95(:,j),-VaREVT95(:,j)];
     VaRFormat = {'-','--','.'};
-    IndexNormal95 = oil_std_returns{TestWindow,index(j)}<VaRData(1); %% Da vedere
-    IndexHistorical95 = oil_std_returns{TestWindow,index(j)}<VaRData(2);
-    IndexEVT95 = oil_std_returns{TestWindow,index(j)}<VaRData(3);
+    IndexNormal95 = oil_std_returns{TestWindow,index(:,j)}<VaRData(:,1); %% Da vedere
+    IndexHistorical95 = oil_std_returns{TestWindow,index(:,j)}<VaRData(:,2);
+    IndexEVT95 = oil_std_returns{TestWindow,index(:,j)}<VaRData(:,3);
     figure('Name','VaR Excedance')
-    bar(oil_date(TestWindow),oil_std_returns{TestWindow,index(j)},'FaceColor',['k',0.7,0.7]);
+    bar(oil_date(TestWindow),oil_std_returns{TestWindow,index(:,j)},'FaceColor',['k',0.7,0.7]);
     hold on
     for i=1:width(VaRData)
         stairs(oil_date(TestWindow),VaRData(:,i),VaRFormat{i});
